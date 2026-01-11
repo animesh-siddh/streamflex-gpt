@@ -10,6 +10,7 @@ import { auth } from "../utils/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
+import { Banner, photoImg } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -43,11 +44,10 @@ const Login = () => {
 
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://img.freepik.com/premium-photo/portrait-smile-businessman-entrepreneur-happy-office-startup-company-with-positive-mindset-corporate-employee-professional-worker-confident-excited-workplace_590464-165991.jpg?semt=ais_hybrid&w=740&q=80",
-          })
+            photoURL:photoImg
+               })
             .then(() => {
-              const { uid, email, displayName, photoURL } = auth.currentUser;
+              const { uid, email, displayName, photoURL:photoImg } = auth.currentUser;
 
               // Profile updated!
               // ...
@@ -56,7 +56,7 @@ const Login = () => {
                   uid: uid,
                   email: email,
                   displayName: displayName,
-                  photoURL: photoURL,
+                  photoURL: photoImg,
                 })
               );
             })
@@ -99,8 +99,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/e393bb3f-261f-43d1-99bb-16a157885615/web/IN-en-20260105-TRIFECTA-perspective_2802b120-4b8c-44a5-8fb9-617a728f4ec6_medium.jpg"
-          alt="banner"
+          src={Banner}  alt="banner"
         />
       </div>
       <form
